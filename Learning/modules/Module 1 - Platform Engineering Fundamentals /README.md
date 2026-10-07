@@ -1,122 +1,182 @@
-# Module 01 — Platform Engineering Fundamentals
+# Module 01 — Linux & Operating Systems
 
-> Goal: Understanding how Linux works before learning how to use it
+**Status:** Restarting  
+**Planned:** October 2026
 
 ---
 
-# Overview
+# Purpose
 
-This module focuses on understanding the Linux operating system from the inside out. Instead of memorizing commands, the goal is to understand how Linux boots, manages processes, organizes filesystems, handles permissions, and interacts with hardware.
+Build a deeper mental model of Linux so that production symptoms can be connected to what the operating system is actually doing.
+
+The objective is not command memorization.
+
+The objective is:
+
+```text
+Symptom
+  ↓
+System concept
+  ↓
+Evidence
+  ↓
+Diagnosis
+```
 
 ---
 
 # Learning Objectives
 
-By the end of this module, I should be able to:
-- [ ] Explain the Linux boot sequence
-- [ ] Understand the role of the kernel
-- [ ] Manage users and permissions
-- [ ] Understand processes and systemd
-- [ ] Navigate the filesystem with confidence
-- [ ] Understand basic networking tools
-- [ ] Explain namespaces and cgroups
-- [ ] Build a strong foundation for Containers and Kubernetes
+By the end of this module, I should be able to explain and investigate:
+
+- kernel vs. user space
+- processes
+- threads
+- process states
+- signals
+- CPU usage
+- load average
+- memory
+- virtual memory
+- filesystem basics
+- I/O
+- file descriptors
+- `/proc`
+- permissions
+- systemd
+- journald
+- sockets
 
 ---
 
-# Books
+# Primary Book
 
-- [ ] How Linux Works, 2rd Edition: What Every Superuser Should Know - Brian Ward
-- [ ] Computer Networking: A Top-Down Approach - James Kurose
-- [ ] The Linux Command Line, 3rd Edition: A Complete Introduction - William Shotts
+**How Linux Works, 3rd Edition — Brian Ward**
 
-### Reading Progress
-
-| Book | Chapter | Status | 
-|------|---------|--------|
-| How Linux Works, 2rd Edition: What Every Superuser Should Know | 1 | Reading |
-
+https://nostarch.com/howlinuxworks3
 
 ---
 
 # Official Documentation
 
-- Linux Kernel Documentation
-- systemd Documentation
+- Linux kernel: https://kernel.org/
+- systemd: https://systemd.io/
+- man pages: https://man7.org/linux/man-pages/
 
 ---
 
-# Technical Articles
+# Study Path
 
-| Article | Status |
-|---------|--------|
-|  |  |
+## Week 1 — Linux mental model
+
+Topics:
+
+- hardware
+- kernel
+- user space
+- system calls
+- processes
+- filesystem
+
+Evidence to collect:
+
+```bash
+uname -a
+ps aux
+ls /proc
+cat /proc/<pid>/status
+```
+
+## Week 2 — Processes, CPU and memory
+
+Topics:
+
+- process lifecycle
+- threads
+- CPU time
+- load average
+- memory usage
+- virtual memory
+
+Labs:
+
+- CPU stress
+- load average
+- process investigation
+- memory pressure
+
+## Week 3 — I/O, files and services
+
+Topics:
+
+- file descriptors
+- filesystem
+- disk usage
+- I/O
+- systemd
+- journald
+
+Labs:
+
+- open file descriptors
+- disk pressure
+- failing systemd service
+- journald investigation
+
+## Week 4 — Networking bridge
+
+Topics:
+
+- sockets
+- listening ports
+- processes and network connections
+- `/proc/net`
+- connection investigation
+
+Lab:
+
+**Which process owns this port?**
 
 ---
 
-# Videos
+# First Project
 
-| Video | Channel | Status |
-|---------|---------|--------|
-|  |  |  |
+## Linux Troubleshooting Lab
 
----
+Create controlled failures and investigate them.
 
-# Podcasts
-
-- N/A
-
----
-
-# Labs
-
-## Lab 01 - Linux Boot Process
-
----
-
-# Project
-
-## Goal
-
-Document the complete Linux boot process from power-on to user login.
-
-Deliverables
-
-- Architecture Diagram
-- Technical Article
-- Boot Timeline
-- Commands Reference
+```text
+CPU high
+Load average high
+Memory pressure
+Disk full
+Permission denied
+Service failed
+Port already in use
+Unexpected process state
+```
 
 ---
 
-# Questions
+# Exit Criteria
 
-Things I still don't fully understand.
+I should be able to answer without a tutorial:
 
--
--
--
-
----
-
-# Self Assessment
-
-Can I explain...
-
-- [ ] BIOS vs UEFI
-- [ ] GRUB
-- [ ] initramfs
-- [ ] systemd
-- [ ] Process lifecycle
-- [ ] Linux permissions
-- [ ] Filesystem hierarchy
-- [ ] Namespaces
-- [ ] cgroups
+1. What is a process?
+2. What is a thread?
+3. What does load average represent?
+4. Why can load be high while CPU is not saturated?
+5. Where can I inspect process information?
+6. What is a file descriptor?
+7. How does systemd manage a service?
+8. Where do I look for service logs?
+9. How do I find which process owns a listening socket?
+10. How would I approach a CPU, memory or disk incident?
 
 ---
 
-# 🔗 Resources
+# Reflection
 
--
--
--
+Before moving to Module 02, write a short reflection:
+
+> What changed in the way I think about Linux after investigating it instead of merely using it?
